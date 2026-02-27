@@ -113,7 +113,7 @@ export default function ConsignmentTab({
   );
 }
 
-const th = {
+const th: React.CSSProperties = {
   textAlign: "left",
   padding: 14,
   fontSize: 13,
@@ -121,7 +121,7 @@ const th = {
   borderBottom: "1px solid #e5e7eb",
 };
 
-const td = {
+const td: React.CSSProperties = {
   padding: 14,
   borderBottom: "1px solid #f1f5f9",
   fontSize: 14,
