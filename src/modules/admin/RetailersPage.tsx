@@ -19,39 +19,6 @@ export default function RetailersPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  // 🔥 TEST FUNCTION
-  const testCreateRetailer = async () => {
-    await fetch(
-      "https://script.google.com/macros/s/AKfycbzr1X4juNDVhrJcaZ_tIGkFyECF-AMU1iXQQygHVB5Cthfpy4knkM4xbK_uZJsZYZ5k/exec",
-      {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain",
-        },
-        body: JSON.stringify({
-          action: "createRetailer",
-          Retailer_Name: "LIVE DEPLOY TEST",
-          Owner_Name: "LIVE OWNER",
-          Phone: "5550000001",
-          Area: "Live Area",
-          City: "Nairobi",
-          State: "Nairobi",
-          Pincode: "100001",
-          Latitude: "-1.286389",
-          Longitude: "36.817223",
-          Assigned_Agent_ID: "A001",
-          Building_Name: "Live Building",
-          Shop_Type: "Mobile",
-          Remarks: "Live deploy test",
-          images: [],
-        }),
-      }
-    );
-
-    alert("Request sent. Check sheet.");
-  };
-
   const columns = [
     { key: "Retailer_ID", label: "ID" },
     { key: "Retailer_Name", label: "Retailer Name" },
@@ -63,9 +30,7 @@ export default function RetailersPage() {
 
   const filteredData = data.filter((r) => {
     const matchesSearch =
-      r.Retailer_Name
-        ?.toLowerCase()
-        .includes(search.toLowerCase());
+      r.Retailer_Name?.toLowerCase().includes(search.toLowerCase());
 
     const matchesStatus =
       !statusFilter || r.Retailer_Status === statusFilter;
@@ -83,25 +48,33 @@ export default function RetailersPage() {
 
   return (
     <PageShell>
-      <h1 style={{ marginBottom: 20 }}>Retailers</h1>
-
-      {/* 🔥 TEST BUTTON */}
-      <button
-        onClick={testCreateRetailer}
+      {/* HEADER ROW */}
+      <div
         style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
           marginBottom: 20,
-          padding: "10px 16px",
-          background: "#111827",
-          color: "#fff",
-          border: "none",
-          borderRadius: 8,
-          cursor: "pointer",
         }}
       >
-        TEST CREATE RETAILER
-      </button>
+        <h1>Retailers</h1>
 
-      {/* SEARCH + FILTER BAR */}
+        <button
+          onClick={() => navigate("/retailers/new")}
+          style={{
+            padding: "10px 16px",
+            background: "#111827",
+            color: "#fff",
+            border: "none",
+            borderRadius: 8,
+            cursor: "pointer",
+          }}
+        >
+          + Create Retailer
+        </button>
+      </div>
+
+      {/* SEARCH + FILTER */}
       <div
         style={{
           display: "flex",
@@ -137,7 +110,7 @@ export default function RetailersPage() {
         </select>
       </div>
 
-      {/* RETAILERS TABLE */}
+      {/* TABLE */}
       <Table
         columns={columns}
         data={filteredData}
