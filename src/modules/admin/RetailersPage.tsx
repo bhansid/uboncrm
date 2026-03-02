@@ -57,7 +57,7 @@ export default function RetailersPage() {
           marginBottom: 20,
         }}
       >
-        <h1>Retailers</h1>
+        <h1>Retailers Updated</h1>
 
         <button
           onClick={() => navigate("/retailers/new")}
